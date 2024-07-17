@@ -27,7 +27,7 @@ class TaskController1 extends Controller
             $query -> where('status', $status);
         } )->orderBy('due_date')->get();
 
-        return view('tasks.index', compact('tasks'));
+        return view('tasks.index', ['tasks' => $tasks, 'showToolbar' => true]);
         
     }
 
@@ -52,7 +52,7 @@ class TaskController1 extends Controller
      */
     public function show( task $task)
     {
-        return $task;
+        return view('tasks.index', ['tasks' => [$task], 'showToolbar'=>false]);
     }
 
     /**
@@ -68,7 +68,8 @@ class TaskController1 extends Controller
      */
     public function update(Request $request, task $task)
     {
-        //
+        $task->update($request->all());
+        return redirect()->back();
     }
 
     /**
