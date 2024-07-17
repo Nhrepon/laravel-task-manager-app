@@ -6,11 +6,7 @@
     <hr/>
 
 
-    @if($showToolbar)
-        <x-task-status :status="request()->get('status')" />
-    @else
-        <a href="{{ route('task.index') }}"> All tasks </a>
-    @endif
+    <x-toolbar show-toolbar="{{ $showToolbar }}" :task="$tasks"/>
 
 
     @foreach ($tasks as $task)
